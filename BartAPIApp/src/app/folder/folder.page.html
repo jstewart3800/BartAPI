@@ -14,8 +14,17 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong class="capitalize">{{ folder }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngIf="folder === 'BART Home'; else stationChosen">
+        <p>Please select a station</p>
+      </ion-col>
+      <ng-template #stationChosen>
+        <ion-col >
+          <p>Station Info</p>
+        </ion-col>
+      </ng-template>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

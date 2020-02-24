@@ -10,30 +10,36 @@ export class StationDataService {
 
   private stationSheet;
 
-  private allStations: StationInfo[] = [];
+  stationLinks = [
+    {
+      title: 'BART Home',
+      url: '/folder/BART Home'
+    }
+  ];
 
   constructor(private http: HttpClient) {
-    this.getStation();
+    this.getStationList();
   }
 
-  getStation() {
+  getStationList() {
     this.stationSheet = this.http.get(this.stationUrl);
     this.stationSheet.subscribe(
       x => {
         console.log(x);
         for (let sd of x.root.stations.station) {
-          let nextStation: StationInfo = {
-            name: sd.name,
-            abbr: sd.abbr,
-            address: sd.address,
-            city: sd.city,
-            state: sd.state,
-            zip: sd.zipcode
+          let nextStation = {
+            title: sd.name,
+            url: '/folder/' + sd.name,
+            abbr: sd.abbr
           }
-          this.allStations.push(nextStation);
+          this.stationLinks.push(nextStation);
         }
-        console.log(this.allStations)
+        console.log(this.stationLinks)
       }
     );
+  }
+
+  getStationInfo() {
+    // this.
   }
 }
