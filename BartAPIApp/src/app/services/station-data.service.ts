@@ -12,19 +12,19 @@ export class StationDataService {
 
   private stationSheet;
   private realTimeData;
-  private station;
+  station;
 
 
   stationStaticInfo: StationInfo[] = [
-    {
-      title: 'BART Home',
-      url: '/folder/BART Home',
-      abbr: '',
-      address: '',
-      city: '',
-      state: '',
-      zip: 0
-    }
+    // {
+    //   title: 'BART Home',
+    //   url: '/folder/BART Home',
+    //   abbr: '',
+    //   address: '',
+    //   city: '',
+    //   state: '',
+    //   zip: 0
+    // }
   ];
 
   constructor(private http: HttpClient) {
@@ -39,7 +39,7 @@ export class StationDataService {
         for (let sd of x.root.stations.station) {
           let nextStation: StationInfo = {
             title: sd.name,
-            url: '/folder/' + sd.name,
+            url: '/folder/' + sd.abbr,
             abbr: sd.abbr,
             address: sd.address,
             city: sd.city,
@@ -54,14 +54,13 @@ export class StationDataService {
   }
 
   getRealTime(abbr: string) {
-    let realTimeSheet = 'http://api.bart.gov/api/etd.aspx?cmd=etd&orig=' + abbr + '&key=MW9S-E7SL-26DU-VV8V&json=y'
+    let realTimeSheet = 'http://api.bart.gov/api/etd.aspx?cmd=etd&orig=' + abbr + '&key=ZPR9-57Q2-93ST-DWE9&json=y'
     this.realTimeData = this.http.get(realTimeSheet);
     this.realTimeData.subscribe(
       x => {
-        console.log(x.root.station[0]);
         this.station = {
           name: x.root.station[0].name,
-          destinations: [],
+          destinations: []
         }
         for (let d of x.root.station[0].etd) {
           const destination = {

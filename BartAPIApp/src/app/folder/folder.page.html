@@ -3,36 +3,34 @@
             <ion-buttons slot="start">
                   <ion-menu-button></ion-menu-button>
             </ion-buttons>
-            <ion-title>{{ folder }}</ion-title>
+            <ion-title>Bart API</ion-title>
       </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-      <ion-header collapse="condense">
-            <ion-toolbar>
-                  <ion-title size="large">{{ folder }}</ion-title>
-            </ion-toolbar>
-      </ion-header>
+<ion-content [fullscreen]="true" class="folderDisplay">
 
       <ion-grid>
             <ion-row>
-                  <ion-col *ngIf="folder === 'BART Home'; else stationChosen">
-                        <p>Please select a station</p>
+                  <ion-col *ngIf="folder === 'BARTHome'; else stationChosen">
+                        <p class="ion-text-center">Please select a station</p>
                   </ion-col>
                   <ng-template #stationChosen>
                         <ion-col>
-                              <ion-card>
+                              <ion-card class="cardStyle">
                                     <ion-card-header>
-                                          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-                                          <ion-card-title>Card Title</ion-card-title>
+                                          <ion-card-subtitle>Departing for:</ion-card-subtitle>
+                                          <ion-card-title>{{this.SDService.station?.destinations[0].destName}}
+                                          </ion-card-title>
+                                          <ion-card-content
+                                                *ngIf="this.SDService.station?.destinations[0].etd[0] !== 'Leaving'; else leavingNow">
+                                                In {{this.SDService.station?.destinations[0].etd[0]}} minutes
+                                          </ion-card-content>
+                                          <ng-template #leavingNow>
+                                                <ion-card-content>Presently</ion-card-content>
+                                          </ng-template>
                                     </ion-card-header>
-
-                                    <ion-card-content>
-                                          Keep close to Nature's heart... and break clear away, once in awhile,
-                                          and climb a mountain or spend a week in the woods. Wash your spirit
-                                          clean.
-                                    </ion-card-content>
                               </ion-card>
+                              <ion-item-divider></ion-item-divider>
                         </ion-col>
                   </ng-template>
             </ion-row>
