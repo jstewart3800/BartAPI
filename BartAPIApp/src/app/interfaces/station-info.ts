@@ -1,5 +1,6 @@
 export interface StationInfo {
-    name: string
+    title: string
+    url: string
     abbr: string
     address: string
     city: string

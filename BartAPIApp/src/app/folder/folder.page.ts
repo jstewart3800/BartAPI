@@ -9,11 +9,15 @@ import { StationDataService } from '../services/station-data.service';
 })
 export class FolderPage implements OnInit {
   public folder: string;
+  private folderStaticInfo = this.SDService.stationStaticInfo;
 
   constructor(private activatedRoute: ActivatedRoute, private SDService: StationDataService) { }
 
   ngOnInit() {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id');
+    
   }
+
+  
 
 }

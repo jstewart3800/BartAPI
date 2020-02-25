@@ -12,7 +12,8 @@ import { StationDataService } from './services/station-data.service';
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
-  public appPages = this.SDService.stationLinks;
+  public appPages = this.SDService.stationStaticInfo;
+
 
   constructor(
     private platform: Platform,
@@ -35,6 +36,11 @@ export class AppComponent implements OnInit {
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+
+  }
+
+  getRealTime(abbr: string) {
+    this.SDService.getRealTime(abbr)
   }
 
 
