@@ -6,42 +6,46 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { StationDataService } from './services/station-data.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+      selector: 'app-root',
+      templateUrl: 'app.component.html',
+      styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public selectedIndex = 0;
-  public appPages = this.SDService.stationStaticInfo;
+      public selectedIndex = 0;
+      public appPages = this.SDService.stationStaticInfo;
 
 
-  constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
-    private SDService: StationDataService
-  ) {
-    this.initializeApp();
-  }
+      constructor(
+            private platform: Platform,
+            private splashScreen: SplashScreen,
+            private statusBar: StatusBar,
+            private SDService: StationDataService
+      ) {
+            this.initializeApp();
+      }
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
-  }
+      initializeApp() {
+            this.platform.ready().then(() => {
+                  this.statusBar.styleDefault();
+                  this.splashScreen.hide();
+            });
+      }
 
-  ngOnInit() {
-    const path = window.location.pathname.split('folder/')[1];
-    if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
-    }
+      ngOnInit() {
+            const path = window.location.pathname.split('folder/')[1];
+            if (path !== undefined) {
+                  this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
+            }
 
-  }
+      }
 
-  getRealTime(abbr: string) {
-    this.SDService.getRealTime(abbr)
-  }
+      getRealTime(abbr: string) {
+            this.SDService.getRealTime(abbr);
+      }
+
+      getStaticMKII(abbr: string) {
+            this.SDService.getStaticMKII(abbr);
+      }
 
 
 }
