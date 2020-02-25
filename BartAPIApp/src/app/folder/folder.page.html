@@ -16,14 +16,14 @@
                   </ion-col>
                   <ng-template #stationChosen>
                         <ion-col>
-                              <ion-card class="cardStyle">
+                              <ion-card *ngFor="let d of this.SDService.station?.destinations; let i = index" class="cardStyle">
                                     <ion-card-header>
                                           <ion-card-subtitle>Departing for:</ion-card-subtitle>
-                                          <ion-card-title>{{this.SDService.station?.destinations[0].destName}}
+                                          <ion-card-title>{{this.SDService.station?.destinations[i].destName}}
                                           </ion-card-title>
                                           <ion-card-content
-                                                *ngIf="this.SDService.station?.destinations[0].etd[0] !== 'Leaving'; else leavingNow">
-                                                In {{this.SDService.station?.destinations[0].etd[0]}} minutes
+                                                *ngIf="this.SDService.station?.destinations[i].etd[0] !== 'Leaving'; else leavingNow">
+                                                In {{this.SDService.station?.destinations[i].etd[0]}} minutes
                                           </ion-card-content>
                                           <ng-template #leavingNow>
                                                 <ion-card-content>Presently</ion-card-content>

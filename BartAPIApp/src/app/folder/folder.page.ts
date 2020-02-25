@@ -12,7 +12,7 @@ export class FolderPage implements OnInit {
   private folderStaticInfo = this.SDService.stationStaticInfo;
   public folderRealTimeInfo = this.SDService.station;
 
-  constructor(private activatedRoute: ActivatedRoute, private SDService: StationDataService) { }
+  constructor(private activatedRoute: ActivatedRoute, public SDService: StationDataService) { }
 
   ngOnInit() {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id');
