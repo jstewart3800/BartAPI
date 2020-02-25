@@ -10,13 +10,22 @@
 <ion-content [fullscreen]="true" class="folderDisplay">
 
       <ion-grid>
-            <ion-row>
-                  <ion-col *ngIf="folder === 'BARTHome'; else stationChosen">
+            <ion-row *ngIf="folder === 'BARTHome'; else stationChosen">
+                  <ion-col>
                         <p class="ion-text-center">Please select a station</p>
                   </ion-col>
-                  <ng-template #stationChosen>
+            </ion-row>
+
+            <ng-template #stationChosen>
+                  <ion-row>
                         <ion-col>
-                              <ion-card *ngFor="let d of this.SDService.station?.destinations; let i = index" class="cardStyle">
+                              <!-- Station card here -->
+                        </ion-col>
+                  </ion-row>
+                  <ion-row>
+                        <ion-col> <!-- use items for each destination, add platform number and line color-->
+                              <ion-card *ngFor="let d of this.SDService.station?.destinations; let i = index"
+                                    class="cardStyle">
                                     <ion-card-header>
                                           <ion-card-subtitle>Departing for:</ion-card-subtitle>
                                           <ion-card-title>{{this.SDService.station?.destinations[i].destName}}
@@ -32,8 +41,8 @@
                               </ion-card>
                               <ion-item-divider></ion-item-divider>
                         </ion-col>
-                  </ng-template>
-            </ion-row>
+                  </ion-row>
+            </ng-template>
       </ion-grid>
 
 </ion-content>
