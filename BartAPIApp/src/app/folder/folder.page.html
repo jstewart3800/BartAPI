@@ -22,8 +22,8 @@
                   <ion-row>
                         <ion-col>
                               <!-- Station card here -->
-                              <ion-card class="cardStyle ion-text-center" color="tertiary">
-                                    <ion-item-divider color="tertiary" class="ion-no-padding center ">
+                              <ion-card class="cardStyle ion-text-center">
+                                    <ion-item-divider class="ion-no-padding center ">
                                           <h1 class="blackText ion-text-center">{{this.SDService.staticStation?.title}}
                                           </h1>
                                     </ion-item-divider>
@@ -50,27 +50,27 @@
                         <ion-col>
 
                               <ion-card *ngFor="let d of this.SDService.station?.destinations; let i = index"
-                                    class="cardStyle">
+                                    class="cardStyle" color="tertiary">
                                     <ion-card-header>
                                           <ion-card-title>{{this.SDService.station?.destinations[i].destName}}
                                           </ion-card-title>
                                           <ion-card-content>
-                                                <ion-list>
+                                                <ion-list class="ion-no-padding">
 
-                                                      <ion-item>
+                                                      <ion-item color="tertiary">
                                                             <ion-label>
                                                                   Platform
                                                                   {{this.SDService.station?.destinations[i].platform}}
                                                             </ion-label>
                                                             <ion-icon slot="end" name="alert-circle-outline"></ion-icon>
                                                       </ion-item>
-                                                      <ion-item>
+                                                      <ion-item color="tertiary">
                                                             <ion-label>
                                                                   {{this.SDService.station?.destinations[i].line}} Line
                                                             </ion-label>
                                                             <ion-icon slot="end" name="analytics-outline"></ion-icon>
                                                       </ion-item>
-                                                      <ion-item
+                                                      <ion-item color="tertiary"
                                                             *ngIf="this.SDService.station?.destinations[i].etd[0] !== 'Leaving'; else leavingNow">
                                                             <ion-label>
                                                                   Leaving in
@@ -79,7 +79,7 @@
                                                             <ion-icon slot="end" name="alarm-outline"></ion-icon>
                                                       </ion-item>
                                                       <ng-template #leavingNow>
-                                                            <ion-item>
+                                                            <ion-item color="tertiary">
                                                                   <ion-label>
                                                                         Leaving now
                                                                   </ion-label>
