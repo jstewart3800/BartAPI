@@ -4,9 +4,9 @@
                   <ion-content>
                         <ion-list id="inbox-list">
                               <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-                                    <ion-item (click)="selectedIndex = i" (click)='getRealTime(p.abbr)' (click)="getStaticMKII(p.abbr)"
-                                          routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false"
-                                          [class.selected]="selectedIndex == i">
+                                    <ion-item (click)="selectedIndex = i" (click)='getRealTime(p.abbr)'
+                                          (click)="getStaticMKII(p.abbr)" routerDirection="root" [routerLink]="[p.url]"
+                                          lines="none" detail="false" [class.selected]="selectedIndex == i">
                                           <ion-label>{{ p.title }}</ion-label>
                                     </ion-item>
                               </ion-menu-toggle>
