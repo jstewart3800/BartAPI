@@ -1,45 +1,45 @@
 <ion-header [translucent]="true">
-      <ion-toolbar>
-            <ion-buttons slot="start">
-                  <ion-menu-button></ion-menu-button>
-            </ion-buttons>
-            <ion-title>Bart API</ion-title>
-      </ion-toolbar>
+     <ion-toolbar>
+          <ion-buttons slot="start">
+               <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+          <ion-title>Bart Station Info</ion-title>
+     </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="folderDisplay">
 
-      <ion-grid>
-            <ion-row *ngIf="folder === 'BARTHome'; else stationChosen">
-                  <ion-col>
-                        <p class="ion-text-center">Please select a station</p>
-                  </ion-col>
-            </ion-row>
+     <ion-grid>
+          <ion-row *ngIf="folder === 'BARTHome'; else stationChosen">
+               <ion-col>
+                    <p class="ion-text-center">Please select a station</p>
+               </ion-col>
+          </ion-row>
 
-            <ng-template #stationChosen>
-                  <ion-row>
-                        <ion-col>
-                              <!-- Station card here -->
-                              <ion-card class="cardStyle">
-                                    <ion-item>
-                                          <ion-label>{{this.SDService.staticStation?.title}} Station</ion-label>
-                                    </ion-item>
+          <ng-template #stationChosen>
+               <ion-row>
+                    <ion-col>
+                         <!-- Station card here -->
+                         <ion-card class="cardStyle">
+                              <ion-item>
+                                   <ion-label>{{this.SDService.staticStation?.title}}</ion-label>
+                              </ion-item>
 
-                                    <ion-card-content class="ion-text-center">
-                                          {{this.SDService.staticStation?.address}}
-                                          <br>
-                                          {{this.SDService.staticStation?.city}},
-                                          {{this.SDService.staticStation?.state}}, {{this.SDService.staticStation?.zip}}
-                                    </ion-card-content>
-                              </ion-card>
-                        </ion-col>
-                  </ion-row>
-                  <ion-row>
-                        <ion-col>
+                              <ion-card-content class="ion-text-center">
+                                   {{this.SDService.staticStation?.address}}
+                                   <br>
+                                   {{this.SDService.staticStation?.city}},
+                                   {{this.SDService.staticStation?.state}}, {{this.SDService.staticStation?.zip}}
+                              </ion-card-content>
+                         </ion-card>
+                    </ion-col>
+               </ion-row>
+               <ion-row>
+                    <ion-col>
 
-                              <!-- destination cards -->
-                              <!-- use items for each destination, add platform number and line color-->
-                              <!-- <ion-card *ngFor="let d of this.SDService.station?.destinations; let i = index"
+                         <!-- destination cards -->
+                         <!-- use items for each destination, add platform number and line color-->
+                         <!-- <ion-card *ngFor="let d of this.SDService.station?.destinations; let i = index"
                                     class="cardStyle">
                                     <ion-card-header>
                                           <ion-card-subtitle>Departing for:</ion-card-subtitle>
@@ -55,21 +55,27 @@
                                     </ion-card-header>
                               </ion-card> -->
 
-                              <!-- destination items -->
-                              <ion-item-group class="cardStyle">
-                                    <ion-item-divider>
-                                      <ion-label>Departing to:</ion-label>
-                                    </ion-item-divider>
-                                  
-                                    <ion-item *ngFor="let d of this.SDService.station?.destinations; let i = index" >
-                                      <ion-label>{{this.SDService.station?.destinations[i].destName}}</ion-label> <!-- Items need tweaking -->
-                                    </ion-item>
-                                  </ion-item-group>
+                         <!-- destination items -->
+                         <ion-item-group class="cardStyle">
+                              <ion-item-divider>
+                                   <ion-label>Destinations:</ion-label>
+                              </ion-item-divider>
 
-                              <ion-item-divider></ion-item-divider>
-                        </ion-col>
-                  </ion-row>
-            </ng-template>
-      </ion-grid>
+                              <ion-item-divider *ngFor="let d of this.SDService.station?.destinations; let i = index">
+                                   <ion-col class="center rPad">
+                                        <ion-button expand="full" class="center buttWidth">
+                                             {{this.SDService.station?.destinations[i].destName}}
+                                        </ion-button>
+
+                                   </ion-col>
+
+                              </ion-item-divider>
+                         </ion-item-group>
+
+                         <ion-item-divider></ion-item-divider>
+                    </ion-col>
+               </ion-row>
+          </ng-template>
+     </ion-grid>
 
 </ion-content>

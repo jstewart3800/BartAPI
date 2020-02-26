@@ -38,3 +38,16 @@ ion-content ion-toolbar {
 .cardStyle{
   --ion-background-color: white;
 }
+
+.center{
+     display: flex;
+     justify-content: center;
+}
+
+.buttWidth{
+     width: 100%
+}
+
+.rPad{
+     padding-right: 16px;
+}
