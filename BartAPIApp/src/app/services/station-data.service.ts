@@ -17,27 +17,23 @@ export class StationDataService {
       public staticStation: StationInfo;
 
 
-      public stationStaticInfo: StationInfo[] = [];
+      public stationStaticInfo = [];
 
 
       constructor(private http: HttpClient) {
-            this.getStatic();
+            this.getListItems();
       }
 
-      getStatic() { //change to just control side list
+      getListItems() { //change to just control side list
             this.stationSheet = this.http.get(this.stationUrl);
             this.stationSheet.subscribe(
                   x => {
                         console.log(x);
                         for (let sd of x.root.stations.station) {
-                              let nextStation: StationInfo = {
+                              let nextStation = {
                                     title: sd.name,
                                     url: '/folder/' + sd.abbr,
                                     abbr: sd.abbr,
-                                    address: sd.address,
-                                    city: sd.city,
-                                    state: sd.state,
-                                    zip: sd.zipcode
                               }
                               this.stationStaticInfo.push(nextStation);
                         }
@@ -53,7 +49,6 @@ export class StationDataService {
                   x => {
                         this.staticStation = {
                               title: x.root.stations.station.name,
-                              url: '/folder/' + x.root.stations.station.abbr,
                               abbr: x.root.stations.station.abbr,
                               address: x.root.stations.station.address,
                               city: x.root.stations.station.city,
